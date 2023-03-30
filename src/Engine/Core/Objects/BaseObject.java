@@ -7,17 +7,18 @@ import java.util.List;
 
 public class BaseObject extends AbstractObject implements IObject{
     public List<AbstractObject> InnerObjects = new ArrayList<>();
-    public BaseObject(Vector pos) {
-        Pos = new Vector(pos);
+    public BaseObject(double x, double y) {
+        super(x, y);
     }
-    public void Move(double dx, double dy) {
+    public void Move(Vector ds) {
         // TODO: Make move method using MoveCommand pattern,
         //  cooperate with Collider and cancelling Command with the
         //  hierarchy of objects/colliders
     }
-    public void AddInner(BaseObject obj) {
+    public void AddInner(AbstractObject obj) {
         obj.ParentId = ObjectId;
         InnerObjects.add((obj));
+        obj.UpdateRealPos();
     }
     final public void Start() {
         start();
@@ -35,9 +36,11 @@ public class BaseObject extends AbstractObject implements IObject{
             }
         }
     }
+    @Override
     public void start() {
 
     }
+    @Override
     public void update(double dt) {
         // Test case
         System.out.println(ObjectId + " updated, dt = " + dt);
