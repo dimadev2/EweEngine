@@ -1,15 +1,16 @@
-import Engine.Core.BaseObject;
-import Engine.Core.World;
-import Engine.Geometry.Point;
+import Engine.Geometry.Shapes.Rectangle;
+import Engine.Runnable.WorldRunnable;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        World w = new World();
-        w.AddObject(new BaseObject(new Point(0, 0)));
-        w.AddObject(new BaseObject(new Point(0, 0)));
-        w.AddObject(new BaseObject(new Point(0, 0)));
-        w.AddObject(new BaseObject(new Point(0, 0)), 2);
+        MyWorld1 w = new MyWorld1();
 
-        w.MainLoop();
+        WorldRunnable wr = new WorldRunnable("WorldRunnable", w, 30);
+        //MyGraphic g = new MyGraphic("Graphic", 720, 1080, 30, w);
+        SquareAnimation sq = new SquareAnimation((Rectangle) w.ColliderList.get(0).Shape, (Rectangle)w.ColliderList.get(1).Shape);
+
+        sq.thread.join();
+        //g.thread.join();
+        wr.Thread.join();
     }
 }
