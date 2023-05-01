@@ -15,4 +15,14 @@ public class Vector {
         X += other.X;
         Y += other.Y;
     }
+    public void Mult(double s) {
+        X *= s;
+        Y *= s;
+    }
+    public double Abs() {
+        return Math.sqrt(X*X + Y*Y);
+    }
+    public double Scal(Vector other) {
+        return X * other.X + Y * other.Y;
+    }
 }
