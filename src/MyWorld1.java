@@ -5,8 +5,8 @@ import Engine.Geometry.Vector;
 
 public class MyWorld1 extends World {
     public MyWorld1() {
-        AddObject(new P(10, 50, new Vector(300, 300)));
-        AddObject(new P(420, 150, new Vector(-300, -150)));
+        AddObject(new P(10, 50, new Vector(300, 700)));
+        AddObject(new P(10, 150, new Vector(-300, -705)));
 
         Collider col1 = new Collider(0, 0, 50, 50);
         Collider col2 = new Collider(0, 0, 50, 50);

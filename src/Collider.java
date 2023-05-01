@@ -21,7 +21,7 @@ public class Collider extends RectangleCollider {
             Vector osp = op.prevSpeed;
 
             Vector norm = new Vector(op.Pos.X - p.Pos.X, op.Pos.Y - p.Pos.Y);
-            norm.Mult(1/norm.Abs());
+            norm.Mult(-1/norm.Abs());
 
             Vector p1 = new Vector(norm.X, norm.Y);
             p1.Mult(sp.Scal(norm) / norm.Abs());

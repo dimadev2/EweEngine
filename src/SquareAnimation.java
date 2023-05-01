@@ -1,15 +1,13 @@
 import Engine.Geometry.Shapes.Rectangle;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.*;
 
-public class SquareAnimation extends Canvas implements Runnable {
+public class SquareAnimation extends JPanel implements Runnable {
     private int x = 0, y = 180; // начальные координаты квадрата
     private int dx = 5, dy = 0; // шаг перемещения по x и y
-    private final int WIDTH = 400; // ширина канвы
-    private final int HEIGHT = 400; // высота канвы
+    private final int WIDTH = 550; // ширина канвы
+    private final int HEIGHT = 550; // высота канвы
     public Thread thread;
     private JFrame frame;
     Rectangle R1;
@@ -20,13 +18,15 @@ public class SquareAnimation extends Canvas implements Runnable {
         R2 = r2;
 
         setBackground(Color.WHITE);
-        setSize(WIDTH, HEIGHT);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         frame = new JFrame("Squares");
         frame.add(this);
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        setDoubleBuffered(true);
 
         thread = new Thread(this, "Graphics");
         thread.start();
@@ -47,6 +47,9 @@ public class SquareAnimation extends Canvas implements Runnable {
     }
 
     public void paint(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
+
         g.setColor(Color.RED); // задаем цвет квадрата
         g.fillRect((int) R1.Pos.X, (int) R1.Pos.Y, (int) R1.Width, (int) R1.Height); // рисуем квадрат
 
